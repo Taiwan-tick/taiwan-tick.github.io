@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歌曲 — 布丁的陽光草原</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FFFBF4; --warm-bg: #FFF5E6;
+      --yellow: #F2C84B; --yellow-light: #FDE89A;
+      --green: #8BB89A; --green-light: #C8DFCC; --green-dark: #5A8C6A;
+      --blush: #EAA89C; --blush-light: #F5D5CF;
+      --brown: #4A3728; --brown-mid: #7A5C48; --brown-light: #B8967E;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--brown); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 60px;
+      background: rgba(255,251,244,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139,184,154,0.2);
+    }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 500; color: var(--green-dark); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-back { font-size: 0.85rem; color: var(--brown-mid); text-decoration: none; transition: color 0.3s; }
+    .nav-back:hover { color: var(--green-dark); }
+
+    /* HERO */
+    .music-hero {
+      min-height: 42vh; display: flex; align-items: flex-end;
+      padding: 120px 60px 64px;
+      background: linear-gradient(160deg, #EDF5EF 0%, var(--cream) 50%, var(--warm-bg) 100%);
+      position: relative; overflow: hidden;
+    }
+    .music-hero::before {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(139,184,154,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 720px; position: relative; z-index: 1; }
+    .breadcrumb { font-size: 0.8rem; color: var(--brown-light); margin-bottom: 16px; }
+    .breadcrumb a { color: var(--brown-light); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--green-dark); }
+    .music-category { display: inline-block; background: var(--green-light); color: var(--brown); font-size: 0.78rem; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.1em; }
+    h1.music-title { font-family: 'Noto Serif TC', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.3; margin-bottom: 16px; }
+    .music-sub { color: var(--brown-mid); font-size: 0.95rem; max-width: 500px; line-height: 1.8; }
+
+    /* MAIN */
+    .music-main { max-width: 860px; margin: 0 auto; padding: 80px 60px; }
+
+    /* intro */
+    .album-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+      background: linear-gradient(135deg, #EDF5EF, var(--cream));
+      border-radius: 20px; padding: 48px; margin-bottom: 80px;
+      align-items: center;
+    }
+    .album-cover {
+      aspect-ratio: 1; border-radius: 16px;
+      background: linear-gradient(135deg, var(--green-light), var(--yellow-light));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; font-family: 'Noto Serif TC', serif;
+    }
+    .album-cover .dog { font-size: 4rem; }
+    .album-cover .album-name { font-size: 1.1rem; font-weight: 500; color: var(--brown); text-align: center; line-height: 1.4; }
+    .album-cover .album-count { font-size: 0.78rem; color: var(--brown-mid); }
+    .album-text h2 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; }
+    .album-text p { font-size: 0.9rem; color: var(--brown-mid); line-height: 1.8; }
+    .album-text .poem-link {
+      display: inline-block; margin-top: 24px;
+      color: var(--green-dark); text-decoration: none; font-size: 0.88rem;
+      border-bottom: 1px solid var(--green-light); transition: border-color 0.3s;
+    }
+    .album-text .poem-link:hover { border-color: var(--green-dark); }
+
+    /* SONGS */
+    .songs-section h2 {
+      font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 400;
+      color: var(--brown-mid); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .songs-section h2::after { content: ''; flex: 1; height: 1px; background: var(--green-light); }
+
+    .song-card {
+      display: grid; grid-template-columns: 60px 1fr auto;
+      gap: 24px; align-items: start;
+      background: white; border-radius: 16px; padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 16px rgba(74,55,40,0.06);
+      scroll-margin-top: 100px;
+      transition: box-shadow 0.3s;
+    }
+    .song-card:hover { box-shadow: 0 8px 32px rgba(74,55,40,0.12); }
+    .song-number {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 2rem; color: var(--green-light); line-height: 1;
+      text-align: center; padding-top: 4px;
+    }
+    .song-body { }
+    .song-title-en { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 4px; }
+    .song-title-zh { font-size: 0.88rem; color: var(--brown-mid); margin-bottom: 16px; }
+    .song-stanza {
+      font-size: 0.85rem; color: var(--brown-light); line-height: 1.9;
+      padding-left: 16px; border-left: 2px solid var(--green-light);
+      font-style: italic;
+    }
+    .song-stanza span { display: block; }
+    .song-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .tag-mood {
+      display: inline-block; padding: 4px 12px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 400;
+    }
+    .tag-mood.gather { background: var(--blush-light); color: var(--brown); }
+    .tag-mood.release { background: var(--yellow-light); color: var(--brown); }
+    .tag-mood.memory { background: var(--green-light); color: var(--brown); }
+    .tag-mood.light { background: #D4E8F8; color: var(--brown); }
+
+    /* note */
+    .music-note {
+      background: var(--warm-bg); border-radius: 16px; padding: 36px;
+      margin-top: 56px; text-align: center;
+    }
+    .music-note p { font-size: 0.9rem; color: var(--brown-mid); line-height: 1.9; }
+    .music-note .note-icon { font-size: 2rem; margin-bottom: 12px; }
+
+    .btn-primary {
+      display: inline-block; background: var(--green-dark); color: white;
+      padding: 14px 32px; border-radius: 30px; text-decoration: none;
+      font-size: 0.9rem; margin-top: 20px; transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #4a7a58; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block; border: 1.5px solid var(--green-dark);
+      color: var(--green-dark); padding: 14px 32px; border-radius: 30px;
+      text-decoration: none; font-size: 0.9rem; margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { background: var(--green-dark); color: white; }
+
+    footer {
+      background: var(--brown); color: rgba(255,251,244,0.7);
+      text-align: center; padding: 40px 60px; font-size: 0.82rem; margin-top: 120px;
+    }
+    footer a { color: var(--yellow-light); text-decoration: none; }
+
+    @media (max-width: 680px) {
+      nav { padding: 16px 24px; }
+      .music-hero { padding: 100px 24px 48px; }
+      .music-main { padding: 48px 24px; }
+      .album-intro { grid-template-columns: 1fr; }
+      .song-card { grid-template-columns: 40px 1fr; }
+      .song-actions { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">🐾 布丁的陽光草原</a>
+    <a href="../index.html" class="nav-back">← 回首頁</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="music-hero">
+    <div class="hero-content">
+      <p class="breadcrumb"><a href="../index.html">首頁</a> &nbsp;/&nbsp; 詩集歌曲</p>
+      <span class="music-category">歌曲 · 第一輯 · 安安</span>
+      <h1 class="music-title">安安的歌曲輯<br>The Good Boy Cycle</h1>
+      <p class="music-sub">四首歌，陪一隻好狗走完最後的那段路，然後奔向光。</p>
+    </div>
+  </div>
+
+  <div class="music-main">
+
+    <!-- ALBUM INTRO -->
+    <div class="album-intro">
+      <div class="album-cover">
+        <div class="dog">🐕</div>
+        <div class="album-name">安安<br>The Good Boy Cycle</div>
+        <div class="album-count">4 首歌曲</div>
+      </div>
+      <div class="album-text">
+        <h2>關於這張輯</h2>
+        <p>這是為一隻名叫安安的狗所寫的四首歌。他在家人的陪伴下離開，帶著一生的快樂縱身躍進光裡。</p>
+        <p style="margin-top:12px;">歌詞是英文，詩是中文，但說的是同一件事：愛是留不住的，但愛存在過，這一點永遠是真的。</p>
+        <a href="../poems/an-an.html" class="poem-link">閱讀中文詩〈安安〉 →</a>
+      </div>
+    </div>
+
+    <!-- SONGS -->
+    <div class="songs-section">
+      <h2>歌曲</h2>
+
+      <div class="song-card" id="song1">
+        <div class="song-number">01</div>
+        <div class="song-body">
+          <div class="song-title-en">The Good Boy Hears Everything</div>
+          <div class="song-title-zh">他聽見了一切</div>
+          <div class="song-stanza">
+            <span>Every hand that loved him came.</span>
+            <span>They called his name so soft and slow.</span>
+            <span>The light grew big inside the frame.</span>
+            <span>The good boy heard — he let them know.</span>
+          </div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood gather">陪伴 · 告別</span>
+        </div>
+      </div>
+
+      <div class="song-card" id="song2">
+        <div class="song-number">02</div>
+        <div class="song-body">
+          <div class="song-title-en">He Found No Floor Beneath His Paws</div>
+          <div class="song-title-zh">腳下不再有地板</div>
+          <div class="song-stanza">
+            <span>He looked below and saw the sky.</span>
+            <span>No walls, no weight, no ache held on.</span>
+            <span>He breathed out once like a prayer,</span>
+            <span>and then the good boy — he was gone.</span>
+          </div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood release">釋懷 · 自由</span>
+        </div>
+      </div>
+
+      <div class="song-card" id="song3">
+        <div class="song-number">03</div>
+        <div class="song-body">
+          <div class="song-title-en">The Park That Never Closed</div>
+          <div class="song-title-zh">那個從不打烊的公園</div>
+          <div class="song-stanza">
+            <span>He saw the grass — the same old green.</span>
+            <span>The roads, the runs, the golden joy.</span>
+            <span>The taste of chicken, warm and clean.</span>
+            <span>He kept it all — the whole good boy.</span>
+          </div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood memory">回憶 · 快樂</span>
+        </div>
+      </div>
+
+      <div class="song-card" id="song4">
+        <div class="song-number">04</div>
+        <div class="song-body">
+          <div class="song-title-en">He Jumped Into the Brightest Thing</div>
+          <div class="song-title-zh">他跳進了最亮的那邊</div>
+          <div class="song-stanza">
+            <span>Light was never a stranger here —</span>
+            <span>he'd seen it in every eye that loved.</span>
+            <span>He landed somewhere warm and known and wide,</span>
+            <span>and he is very glad that you are all inside.</span>
+          </div>
+        </div>
+        <div class="song-actions">
+          <span class="tag-mood light">光 · 永恆</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTE -->
+    <div class="music-note">
+      <div class="note-icon">🎵</div>
+      <p>這四首歌曲由 AI 音樂工具 SUNO 生成，<br>
+      詞曲創作：布丁的陽光草原。<br>
+      <br>
+      <em>「He landed somewhere warm and known and wide,<br>
+      and from the brightest thing he's looking in —<br>
+      and he is very glad that you are all inside.」</em></p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="../poems/an-an.html" class="btn-primary">閱讀中文詩</a>
+        <a href="../index.html" class="btn-ghost">← 回首頁</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2024 布丁的陽光草原 &nbsp;·&nbsp; <a href="../index.html">回首頁</a></p>
+    <p style="margin-top:8px; font-size:0.78rem;">每一隻毛孩，都值得被記得。</p>
+  </footer>
+
+</body>
+</html>
